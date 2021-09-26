@@ -56,18 +56,13 @@ while game_is_on:
         scoreboard.victory()
         game_is_on = False
 
-states_to_learn = {
-    "Correct States": [],
-    "Incorrect States": [],
-}            
-    
-for state in states_only:
-    if state.lower() in correct_guesses:
-        states_to_learn["Correct States"].append(state)
-    else:
-        states_to_learn["Incorrect States"].append(state)
+states_to_learn = []
 
-learning_data = pandas.Series(states_to_learn)
+for state in states_only:
+    if state.lower() not in correct_guesses:
+        states_to_learn.append(state)
+
+learning_data = pandas.DataFrame(states_to_learn)
 learning_data.to_csv("states_to_learn.csv")
 
 

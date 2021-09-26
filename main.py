@@ -25,7 +25,7 @@ game_is_on = True
 
 while game_is_on:
     #prompt user for input and store as a variable
-    input_prompt = turtle.textinput("User Guess", "Enter a state name: ")
+    input_prompt = turtle.textinput("Your Guess", "Enter a state name: ")
     #create a 'stop' option for debugging
     if input_prompt == 'stop':
         game_is_on = False
@@ -57,13 +57,14 @@ while game_is_on:
         game_is_on = False
 
 states_to_learn = {
-    #"Correct States": [],
+    "Correct States": [],
     "Incorrect States": [],
 }            
     
 for state in states_only:
-    if state.lower() not in correct_guesses:
-        #states_to_learn["Correct States"].append(state)
+    if state.lower() in correct_guesses:
+        states_to_learn["Correct States"].append(state)
+    else:
         states_to_learn["Incorrect States"].append(state)
 
 learning_data = pandas.Series(states_to_learn)
